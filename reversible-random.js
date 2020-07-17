@@ -98,12 +98,16 @@ class ReversibleRandom {
     );
   }
   next () {
-    var n = (this.cur * this.a + this.c) % this.m;
-	  return Number(n);
+    this.cur = (this.cur * this.a + this.c) % this.m;
+	  return Number(this.cur);
   }
   prev () {
     var n = (this.cur + this.m - this.c) % this.m;
-	  return Number(n * this.inv_a % this.m);
+    this.cur = n * this.inv_a % this.m;
+	  return Number(this.cur);
+  }
+  curr () {
+    return Number(this.cur);
   }
 
   // Simple wrap for operations with ranges.
@@ -120,13 +124,15 @@ class ReversibleRandom {
     this.cur = BigInt(i) + rand * len;
   }
   rangeNext (min, max) {
-    var n = (this.cur * this.a + this.c) % this.m;
-    return Number(n % BigInt(max - min + 1) + BigInt(min));
+    this.next();
+    return Number(this.cur % BigInt(max - min + 1) + BigInt(min));
   }
   rangePrev (min, max) {
-    var n = (this.cur + this.m - this.c) % this.m;
-	  n = n * this.inv_a % this.m;
-    return Number(n % BigInt(max - min + 1) + BigInt(min));
+    this.prev();
+    return Number(this.cur % BigInt(max - min + 1) + BigInt(min));
+  }
+  rangeCurr (min, max) {
+    return Number(this.cur % BigInt(max - min + 1) + BigInt(min));
   }
 }
 
