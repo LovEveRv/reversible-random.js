@@ -21,7 +21,7 @@ import { ReversibleRandom } from './reversible-random.js'
 ## 使用
 
 ### 构造
-可以直接使用一下方式构造一个随机数生成器：
+可以直接使用以下方式构造一个随机数生成器：
 
 ```js
 var RNG = new ReversibleRandom()
@@ -33,7 +33,7 @@ var RNG = new ReversibleRandom()
 var RNG = new ReversibleRandom(a, c, m)
 ```
 
-需要指出的是，当你使用第一种方式构造了随机数生成器，相当于：
+需要指出的是，当你使用第一种方式构造随机数生成器，相当于：
 
 ```js
 var RNG = new ReversibleRandom(9301, 49297, 233280)
