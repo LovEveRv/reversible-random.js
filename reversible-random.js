@@ -68,7 +68,7 @@ Class Definition
 // Also make sure a and m are coprime numbers.
 // Otherwise, there will not be a certain inv_a, thus this RNG cannot work properly.
 class ReversibleRandom {
-  constructor (a, c, m, inv_a = undefined) {
+  constructor (a = 48271, c = 0, m = 2147483647, inv_a = undefined) {
     this.a = BigInt(a);
     this.c = BigInt(c);
     this.m = BigInt(m);
