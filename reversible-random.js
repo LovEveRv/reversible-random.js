@@ -99,12 +99,12 @@ class ReversibleRandom {
   }
   next () {
     this.cur = (this.cur * this.a + this.c) % this.m;
-	  return Number(this.cur);
+    return Number(this.cur);
   }
   prev () {
     var n = (this.cur + this.m - this.c) % this.m;
     this.cur = n * this.inv_a % this.m;
-	  return Number(this.cur);
+    return Number(this.cur);
   }
   curr () {
     return Number(this.cur);
