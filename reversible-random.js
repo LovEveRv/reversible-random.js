@@ -62,10 +62,14 @@ class ReversibleRandom {
     }
     else this.inv_a = getInverses(a, m);
     
-    this.cur = BigInt(Math.floor(Math.random() * m));
+    this.cur = BigInt(Math.floor(Math.random() * m)) % this.m;
   }
   setInitial (i) {
     this.cur = BigInt(i);
+    console.assert(
+      this.cur < this.m && BigInt(0) <= this.cur,
+      'Error: initial number i exceeds [0, RAND_MAX]!'
+    );
   }
   next () {
     var n = (this.cur * this.a + this.c) % this.m;
@@ -80,18 +84,23 @@ class ReversibleRandom {
   // Attention: [min, max] is left-closed-right-closed.
 
   setRangeInitial (i, min, max) {
-    var len = max - min - 1;
-    var rand = Math.floor(Math.random() * Math.floor(m / len - 1));
-    this.cur = BigInt(i) + BigInt(rand) * BigInt(len);
+    console.assert(
+      min <= i && i <= max,
+      'Error: initial number i exceeds [min, max]!'
+    );
+    var len = BigInt(max - min + 1);
+    var rand = Math.floor(Math.random() * (Number(this.m / len) - 1));
+    rand = BigInt(rand);
+    this.cur = BigInt(i) + rand * len;
   }
   rangeNext (min, max) {
     var n = (this.cur * this.a + this.c) % this.m;
-    return Number(n % BigInt(max - min - 1) + BigInt(min));
+    return Number(n % BigInt(max - min + 1) + BigInt(min));
   }
   rangePrev (min, max) {
     var n = (this.cur + this.m - this.c) % this.m;
 	  n = n * this.inv_a % this.m;
-    return Number(n % BigInt(max - min - 1) + BigInt(min));
+    return Number(n % BigInt(max - min + 1) + BigInt(min));
   }
 }
 
