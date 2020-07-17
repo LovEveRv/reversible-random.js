@@ -6,7 +6,7 @@ A "reversible" random number generator for JavaScript. It's able to generate the
 ## 导入
 直接将 `reversible-random.js` 文件复制到你的项目中，然后根据路径导入此模块即可。
 
-***注意：为了保证计算的精确性，实现中使用了 JavaScript 新标准：`BigInt` 类。请确保开发环境和生产环境支持这一标准***。
+为了保证计算的精确性，另外实现了一个版本：`reversible-random-bigint.js`，此版本不会产生浮点数误差和溢出问题，非常推荐使用。但在其实现中使用了 JavaScript 新标准：`BigInt` 类。如要使用，请确保开发环境和生产环境支持这一标准。以下展示均以 `reversible-random.js` 为例，而对于 `reversible-random-bigint.js`，接口都是完全一致的。
 
 ### CommandJS 风格的导入
 ```js
@@ -36,10 +36,12 @@ var RNG = new ReversibleRandom(a, c, m)
 需要指出的是，当你使用第一种方式构造了随机数生成器，相当于：
 
 ```js
-var RNG = new ReversibleRandom(48271, 0, 2147483647)
+var RNG = new ReversibleRandom(9301, 49297, 233280)
 ```
 
-因为这是它的默认参数。另外一组 js 中常用的参数是 `9301, 49297, 233280`
+因为这是它的默认参数。如果使用 `reversible-random-bigint.js`，则默认参数会是 `48271, 0, 2147483647`。
+
+***注意，当使用非 `BigInt` 版本时，为保证计算的精确性，请不要设置太大的模数 `m`。***
 
 还可以指定第四项参数 `inv_a`，它是 `a` 在模 `m` 意义下的乘法逆元。也就是说，应当满足：
 
