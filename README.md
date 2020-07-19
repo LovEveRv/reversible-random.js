@@ -3,6 +3,8 @@ A "reversible" random number generator for JavaScript. It's able to generate the
 
 一个 JavaScript 编写的“可逆”随机数生成器，能够生成前一个随机数。基于线性同余算法。
 
+参考：[https://imagasaikou.cn/blog/7](https://imagasaikou.cn/blog/7)
+
 ## 导入
 直接将 `reversible-random.js` 文件复制到你的项目中，然后根据路径导入此模块即可。
 
