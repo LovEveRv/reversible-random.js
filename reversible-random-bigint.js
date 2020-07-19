@@ -125,7 +125,8 @@ class ReversibleRandom {
       'Error: initial number i exceeds [min, max]!'
     );
     var len = BigInt(max - min + 1);
-    var rand = Math.floor(Math.random() * (Number(this.m / len) - 1));
+    var rand = Math.floor(Math.random() * (Number(this.m / len) - 2)) + 1;
+    // make sure this.cur != 0
     rand = BigInt(rand);
     this.cur = BigInt(i) + rand * len;
   }
