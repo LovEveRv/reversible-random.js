@@ -128,7 +128,7 @@ class ReversibleRandom {
     var rand = Math.floor(Math.random() * (Number(this.m / len) - 2)) + 1;
     // make sure this.cur != 0
     rand = BigInt(rand);
-    this.cur = BigInt(i) + rand * len;
+    this.cur = BigInt(i) - min + rand * len;
   }
   rangeNext (min, max) {
     this.next();
