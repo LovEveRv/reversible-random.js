@@ -5,6 +5,9 @@ A "reversible" random number generator for JavaScript. It's able to generate the
 
 参考：[https://imagasaikou.cn/blog/7](https://imagasaikou.cn/blog/7)
 
+**其他语言的实现：**
++ Java: [https://github.com/PriceHu/ReversibleRandom.java](https://github.com/PriceHu/ReversibleRandom.java)
+
 ## 导入
 直接将 `reversible-random.js` 文件复制到你的项目中，然后根据路径导入此模块即可。
 
